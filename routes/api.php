@@ -18,5 +18,5 @@ use Illuminate\Http\Request;
 // });
 
 Route::group(['prefix'=>'api'],function(){
-    Route::get('/', 'ApiController@index');
+    Route::get('/', 'UserController@index');
 });

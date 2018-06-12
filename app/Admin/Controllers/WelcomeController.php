@@ -1,10 +1,8 @@
 <?php
 namespace App\Admin\Controllers;
 
-use App\Http\Controllers\Controller;
-
-class WelcomeController extends Controller{
+class WelcomeController extends AdminController{
   public function index(){
-    return "admin/welcome/index";
+    $this->paramError();
   }
 }
