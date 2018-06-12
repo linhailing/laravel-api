@@ -34,8 +34,15 @@ class ApiController extends Controller{
     $this->member = [
       'uid' => '1000',
       'gender' => 'f',
-      'state' => 1
+      'state' => 1,
+      'nickname'=> '测试',
+      'username' => 'henry'
     ];
+    $this->member = Util::array2Object($this->member);
     $str = "{$this->member->uid}|".strtolower($this->member->gender)."|{$this->member->state}|{$time}";
+    $sting = 'test';
+    $mdstr = md5($str.$sting);
+    $pkey = $str.$mdstr.'|'.urlencode(Util::encode_url_substr_UTF8($this->member->nickname, 60))."|{$this->member->username}|1";
+    return $pkey;
   }
 }

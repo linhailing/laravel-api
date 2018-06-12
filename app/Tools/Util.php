@@ -48,4 +48,32 @@ class Util{
 		$content .= "\n";
 		error_log($content, 3, $file);
 	}
+	//urlencode
+	public static function encode_url_substr_UTF8($str, $lenlimit) {
+		$mblen = mb_strlen($str, "UTF8");
+		$realencodelen = 0;
+		$outstr = '';
+		for ($i = 0; $i < $mblen; $i++) {
+			$char = mb_substr($str, $i, 1, 'UTF8');
+			if (strlen($char) > 1) {
+				$addlen = strlen($char) * 3;
+			} else {
+				$addlen = 1;
+			}
+			if ($realencodelen + $addlen < $lenlimit) {
+				$outstr .= $char;
+				$realencodelen += $addlen;
+			}
+		}
+		return $outstr;
+	}
+	public static function array2Object($array = []){
+		if (is_array($array)) {
+			$obj = new \StdClass();
+			foreach ($array as $key => $val){
+					$obj->$key = $val;
+			}
+		}else { $obj = $array; }
+		return $obj;
+	}
 }
