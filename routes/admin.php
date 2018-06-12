@@ -17,6 +17,6 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-Route::group(['prefix'=>'api'],function(){
-    Route::get('/', 'ApiController@index');
+Route::group(['prefix'=>'admin'],function(){
+    Route::get('/','WelcomeController@index');
 });
