@@ -1,4 +1,12 @@
 <?php
+//配置一些全局变量
+define('ROOTURL', (@$_SERVER['REQUEST_SCHEME']?:'http')."://".@$_SERVER['HTTP_HOST']);
+define('BASEURI', ROOTURL.'/');
+define('RESOURCE', ROOTURL.'/static/');
+define('ROOTPATH', realpath(public_path('/')));
+define('CDNSERVER', env('CDNSERVER'));
+define('STATICPATH', env('STATICPATH', CDNSERVER.'/static/'));
+define('VENDORPATH', env('VENDORPATH', CDNSERVER.'/vendor/'));
 
 return [
 

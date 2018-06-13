@@ -11,7 +11,14 @@ class Model{
 			$sql[] = ':'.$key;
 		}
 		return implode(',', $sql);
-  }
+	}
+	public function set($data) {
+		$sql = array();
+		foreach ($data as $key=>$value) {
+			$sql[] = sprintf('`%s`=:%s', $key, $key);
+		}
+		return implode(',', $sql);
+	}
   private static $sys = null;
 	public static function Sys() {
 		if (!self::$sys) self::$sys = new Sys();
