@@ -13,9 +13,13 @@
 <br>
 <table class="table table-border table-bordered table-hover table-bg">
   @if(@$funcs)
-    @foreach($funcs as $func)
+    @foreach($funcs as $k=>$func)
       <thead>
         <tr>
+        <th colspan="8">{{$func['app_name']}}({{$func['app_ename']}} - @if($func['app_status'] == 0) 不可用 @elseif($func['app_status'] == 1) 可用 @endif - {{$func['app_id']}} )
+          <a href="{{url('/admin/sys/app_edit',['id'=>$k])}}" class="btn btn-success radius size-MINI">修改应用</a>
+          <a href="" class="btn btn-danger radius size-MINI">删除应用</a>
+        </th>
         </tr>
         <tr>
           <th>编号</th>
@@ -25,9 +29,23 @@
           <th>功能图标</th>
           <th>排序</th>
           <th>状态</th>
-          <th>操作</th>
+          <th>操作 <a href="{{url('/admin/sys/func_op',['app_id'=>$k])}}" class="btn btn-success radius size-MINI">添加功能</a></th>
         </tr>
       </thead>
+      @if(!empty($func['children']))
+        @foreach($func['children'] as $chs)
+        <tr>
+          <td>{{$chs['func_id']}}</td>
+          <td>{{$chs['func_name']}}</td>
+          <td>{{$chs['func_ename']}}</td>
+          <td>{{$chs['func_url']}}</td>
+          <td>{{$chs['func_img']}}</td>
+          <td>{{$chs['func_order']}}</td>
+          <td>@if($chs['func_id'])可用@else 不可用 @endif</td>
+          <td><a href="" class="btn btn-success radius size-MINI">编辑</a><a href="" class="btn btn-danger radius size-MINI">删除</a></td>
+        </tr>
+        @endforeach
+      @endif
       <tbody>
       </tbody>
     @endforeach

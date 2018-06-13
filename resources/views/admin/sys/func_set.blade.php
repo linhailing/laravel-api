@@ -30,7 +30,7 @@
     <div class="row cl">
       <label class="form-label col-xs-4 col-sm-3">功能名称:</label>
       <div class="formControls col-xs-8 col-sm-9">
-        <input class="input-text" type="text" name="func_ename">
+        <input class="input-text" type="text" name="func_name">
       </div>
     </div>
     <div class="row cl">

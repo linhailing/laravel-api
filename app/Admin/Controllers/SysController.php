@@ -32,6 +32,7 @@ class SysController extends AdminController{
     $napps = Model::Sys()->napps();
     $D['funcs'] = $funcs;
     $D['napps'] = $napps;
+    //dd($D);
     return view('admin.sys.func_list',$D);
   }
   public function func_op(Request $request, $app_id){
