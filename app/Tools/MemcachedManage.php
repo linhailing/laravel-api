@@ -9,6 +9,7 @@ class MemcachedManage{
   private static $year = 86400*7;//七天
   private static $day = 86400; //一天
   public static function getUserInterest($uid) { 
+    echo ('memcache start...');
     return self::cache([Model::Sys(), 'getUserInterest'], [$uid], self::$day); 
   }
   public static function cache($func, $params = [], $seconds = 3600){
@@ -28,7 +29,6 @@ class MemcachedManage{
       foreach($func as $info){
         if(is_object($info)) $key .= get_class($info);
         if(is_string($info)) $key .= '_'.$info;
-        var_dump($key);
       }
     }
     $key = $key.'_'.implode('_', array_values($params));
