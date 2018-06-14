@@ -96,4 +96,10 @@ class SysController extends AdminController{
     }
     return redirect('admin/sys/func_list');
   }
+  //管理员
+  public function admin_list(Request $request){
+    $D = [];
+    $D['title'] = $D['breachname'] = '管理员管理';
+    return view('admin.sys.admin_list', $D);
+  }
 }

@@ -81,7 +81,7 @@
           <dt><i class="Hui-iconfont">&#xe62e;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
           <dd>
             <ul>
-              <li><a href="system-base.html" title="系统设置">管理员管理</a></li>
+              <li><a href="{{url('/admin/sys/admin_list')}}" title="系统设置">管理员管理</a></li>
               <li><a href="{{url('/admin/sys/func_list')}}" title="栏目管理">功能管理</a></li>
               <li><a href="system-data.html" title="数据字典">用户角色管理</a></li>
         </ul>

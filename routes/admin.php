@@ -27,4 +27,5 @@ Route::group(['prefix'=>'admin'],function(){
     Route::get('/sys/app_op/{id?}', 'SysController@app_op');
     Route::any('/sys/app_post', 'SysController@app_post');
     Route::any('/sys/app_edit/{id}', 'SysController@app_edit');
+    Route::any('/sys/admin_list', 'SysController@admin_list');
 });
