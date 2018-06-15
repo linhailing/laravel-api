@@ -76,4 +76,67 @@ class Util{
 		}else { $obj = $array; }
 		return $obj;
 	}
+	//curl
+	public static function curl($url, $timeout = 0) {
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_FAILONERROR, false);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		if ($timeout > 0) {
+			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+			curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
+		}
+
+		if (strlen($url) > 5 && strtolower(substr($url, 0, 5)) == "https") {
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+		}
+
+		$reponse = curl_exec($ch);
+		curl_close($ch);
+		return $reponse;
+	}
+	public static function curlPost($url, $data, $timeout = 0) {
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_BINARYTRANSFER, true);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		$post_data = http_build_query($data);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+		curl_setopt($ch, CURLOPT_URL, $url);
+		if ($timeout > 0) {
+			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+			curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
+		}
+		if (strlen($url) > 5 && strtolower(substr($url, 0, 5)) == "https") {
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+		}
+		$reponse = curl_exec($ch);
+		curl_close($ch);
+		return $reponse;
+	}
+	public static function curlPostJson($url, $data, $timeout = 0) {
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_BINARYTRANSFER, true);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+		
+		curl_setopt($ch, CURLOPT_URL, $url);
+		if ($timeout > 0) {
+			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+			curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
+		}
+		if (strlen($url) > 5 && strtolower(substr($url, 0, 5)) == "https") {
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+		}
+		$reponse = curl_exec($ch);
+		curl_close($ch);
+		return $reponse;
+	}
 }

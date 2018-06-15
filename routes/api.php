@@ -19,4 +19,5 @@ use Illuminate\Http\Request;
 
 Route::group(['prefix'=>'api'],function(){
     Route::get('/', 'UserController@index');
+	Route::any('/wx_login', 'UserController@wx_login');
 });
