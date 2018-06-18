@@ -8,8 +8,7 @@ use Carbon\Carbon;
 class MemcachedManage{
   private static $year = 86400*7;//七天
   private static $day = 86400; //一天
-  public static function getUserInterest($uid) { 
-    echo ('memcache start...');
+  public static function getUserInterest($uid) {
     return self::cache([Model::Sys(), 'getUserInterest'], [$uid], self::$day); 
   }
   public static function cache($func, $params = [], $seconds = 3600){

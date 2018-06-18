@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App\Tools\Util;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
@@ -46,6 +47,26 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        //return parent::render($request, $exception);
+        /**
+        if (config('app.debug')){
+
+        }*/
+        if ($exception instanceof ApiException){
+            return $this->handle($request, $exception);
+        }
         return parent::render($request, $exception);
+
+    }
+    public function handle($request, Exception $e){
+        if ($e instanceof ApiException){
+            $ret = [
+                'ret' => 404,
+                'msg' => '参数错误！',
+                'code' => 404,
+            ];
+            return Util::jsonp($ret);
+        }
+        return parent::render($request, $e);
     }
 }
